@@ -60,3 +60,25 @@ Ela deve ser descartável, ou seja, a cada instalação do projeto baixamos todo
   
 O REPL do Node.js é uma ferramenta poderosa para desenvolvedores que desejam experimentar rapidamente com código JavaScript, depurar problemas ou aprender mais sobre o comportamento de certas funções e bibliotecas.
 </details>
+
+## Utilizando um módulo
+
+<details>
+<summary>Core Modules</summary>
+
+Importaremos um **módulo do node**: o **File System (fs).** Este módulo serve para trabalhar com diretórios, arquivos e etc.
+
+E ele é um **Core Module**, nativo do **node:**
+
+**Core Modules** são módulos integrados que vêm com a instalação do **Node.js**.
+
+Eles fornecem funcionalidades básicas que são essenciais para o desenvolvimento de aplicações Node.js sem a necessidade de instalar pacotes adicionais.
+
+Esses módulos são escritos em **C++** e **JavaScript**, sendo altamente otimizados para desempenho e eficiência.
+
+### Características dos Core Modules:
+
+1. **Disponibilidade Imediata**: Estão disponíveis imediatamente após a instalação do **Node.js**, sem a necessidade de instalação adicional.
+2. **Desempenho Otimizado**: Como são parte do núcleo do **Node.js**, são projetados para serem altamente eficientes e rápidos.
+3. **Ampla Funcionalidade**: Cobre uma ampla gama de funcionalidades necessárias para construir aplicações *server-side*, como manipulação de arquivos, redes, streams, buffers e mais.
+</details>
