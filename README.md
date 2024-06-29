@@ -273,3 +273,34 @@ O `process.argv` é uma ferramenta poderosa e simples para capturar argumentos d
 Para aplicações mais complexas, módulos externos oferecem funcionalidades adicionais para parsing de argumentos, tornando o desenvolvimento mais fácil e o código mais legível.
 
 </details>
+
+## Módulos externos
+
+<details>
+  <summary>npm install</summary>
+
+  Módulos externos são pacotes de software que não estão incluídos no **core** do **Node.js**, mas que podem ser instalados e usados para adicionar funcionalidades ao seu projeto.
+
+O **Node.js** utiliza o **npm** para gerenciar esses pacotes.
+
+```bash
+npm install pckge
+```
+
+Isso cria uma pasta `node_modules` no diretório do seu projeto, onde o pacote e suas dependências são armazenadas.
+
+### Npm init
+
+O comando `npm init` é usado para criar um arquivo `package.json` no diretório do seu projeto.
+
+Este arquivo contém informações sobre o seu projeto e suas dependências. É uma prática recomendada iniciar um novo projeto **Node.js** executando `npm init`.
+
+Quando você instala um módulo com `npm install`, você pode usar a flag `--save` para adicionar o módulo como uma dependência no `package.json`
+
+### Benefícios do `package.json`
+
+1. **Gestão de Dependências**: Todas as dependências do projeto são listadas, facilitando a instalação e manutenção.
+2. **Automação de Scripts**: Você pode definir scripts para automação de tarefas, como testes, construção e desenvolvimento.
+3. **Informações do Projeto**: O arquivo contém metadados sobre o projeto, facilitando a colaboração e a publicação.
+
+</details>
