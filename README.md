@@ -253,3 +253,23 @@ loadMathModule();
 Em resumo, **Node.js** oferece flexibilidade para usar tanto o sistema de módulos **CommonJS** quanto o **ESM**, permitindo a escolha o que melhor se adapta às suas necessidades de desenvolvimento.
 
 </details>
+
+## Leitura de argumentos
+
+<details>
+<summary>process.argv</summary>
+No node, é comum precisar ler argumentos passados pelo terminal, quando se executa um script.
+
+Para isso, usamos a propriedade `process.argv`, que é um array contendo os argumentos da linha de comando.
+
+### Estrutura do `process.argv`
+
+- `process.argv[0]`: O caminho para o executável do node.
+- `process.argv[1]`: O caminho para o script que está sendo executado.
+- `process.argv[2]` em diante: Os argumentos passados pelo usuário.
+
+O `process.argv` é uma ferramenta poderosa e simples para capturar argumentos de linha de comando em scripts Node.js.
+
+Para aplicações mais complexas, módulos externos oferecem funcionalidades adicionais para parsing de argumentos, tornando o desenvolvimento mais fácil e o código mais legível.
+
+</details>
