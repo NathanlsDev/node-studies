@@ -7,8 +7,10 @@ Que está construída na **V8 engine** (\*escrita em **C++\***) da **Google**. P
 
 Temos então um código **JS** rodando em **C++** para garantir alta performance.
 
-## O que é npm? (**node package manager**)
+## O que é npm ?
 
+<details>
+<summary>Node Package Manager</summary>
 O **npm** é um gerenciador de pacotes do **Node**. ( _php/composer_ | _python/pip_ | _java/maven_ | _C#/nuget_ …)
 
 Vamos poder utilizar **bibliotecas de terceiros**, baixando elas pelo **npm**.
@@ -20,6 +22,8 @@ Dificilmente um software em **Node.js** não utiliza o **npm.**
 Os módulos externos ficam numa pasta chamada **node_modules**.
 
 Ela deve ser descartável, ou seja, a cada instalação do projeto baixamos todos os pacotes novamente.
+
+</details>
 
 ## REPL
 
