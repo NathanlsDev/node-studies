@@ -1,16 +1,17 @@
 # Node.js
 
-## O que é Node.js ?
+## O que é Node.js
 
 O node é uma **runtime** de **javascript**, ou seja **uma biblioteca utilizada por um compilador** durante a execução do programa.
 Que está construída na **V8 engine** (\*escrita em **C++\***) da **Google**. Possibilitando criar softwares em **JS no lado do servidor.**
 
 Temos então um código **JS** rodando em **C++** para garantir alta performance.
 
-## O que é npm ?
+## O que é npm
 
 <details>
 <summary>Node Package Manager</summary>
+
 O **npm** é um gerenciador de pacotes do **Node**. ( _php/composer_ | _python/pip_ | _java/maven_ | _C#/nuget_ …)
 
 Vamos poder utilizar **bibliotecas de terceiros**, baixando elas pelo **npm**.
