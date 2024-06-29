@@ -102,3 +102,149 @@ Esses módulos são escritos em **C++** e **JavaScript**, sendo altamente otimiz
 2. **Desempenho Otimizado**: Como são parte do núcleo do **Node.js**, são projetados para serem altamente eficientes e rápidos.
 3. **Ampla Funcionalidade**: Cobre uma ampla gama de funcionalidades necessárias para construir aplicações _server-side_, como manipulação de arquivos, redes, streams, buffers e mais.
 </details>
+
+## Sistema de módulos
+
+Em Node.js, há duas formas principais de gerenciar módulos e suas dependências: o sistema **CommonJS** e o sistema **ECMAScript Modules** (**ESM**).
+
+<details>
+  <summary>CommonJS</summary>
+
+### CommonJS
+
+O commonJS é o sistema de módulos padrão do **Node.js**. Ele usa as funções `require` para importar módulos e `module.exports` ou `exports` para exportar módulos.
+
+**Exportando com CommonJS:**
+
+```js
+//arquivo math.js
+function add(a, b) {
+  return a + b;
+}
+
+module.exports = {
+  add,
+};
+```
+
+**Importando com CommonJS**:
+
+```jsx
+const math = require("./math");
+console.log(math.add(2, 3)); // saída: 5
+```
+
+</details>
+
+<details>
+  <summary>ECMAScript Modules (ESM)</summary>
+
+### ECMAScript Modules (ESM)
+
+O ECMAScript Modules, é o sistema de módulos moderno introduzido no _ES6 (ECMAScript 2015)_.
+
+Ele usa as palavras-chave `import` e `export` para gerenciar módulos. **Node.js** Começou a suportar **ESM** nativamente a partir da vcersão `12.x`, embora com algumas restrições e necessidade de configuração.
+
+**Exportando com ESM**:
+
+```jsx
+//arquivo math.mjs
+
+export function add(a, b) {
+  return a + b;
+}
+```
+
+**Importando com ESM**:
+
+```jsx
+import { add } from "./math.mjs";
+console.log(add(2, 3)); // saída 5
+```
+
+</details>
+
+<details>
+<summary>Configuração de ESM em Node.js</summary>
+
+### Configuração de ESM em Node.js
+
+Para utilizar ESM você pode:
+
+1. Nomear os arquivos de módulo com a extensão `.mjs`
+2. Ou configurar o arquivo `package.json` com `"type": "module"` para permitir o uso de ESM com arquivos `.js`.
+
+**Exemplo de** `package.json`:
+
+```jsx
+{
+	"type": "module"
+}
+```
+
+</details>
+
+<details>
+<summary>Comparação entre CommonJS e ESM</summary>
+
+### Comparação entre CommonJS e ESM
+
+- **CommonJS**
+  - Usa `require` e `module.exports`.
+  - Carregamento síncrono, adequado para módulos do lado do servidor.
+  - Suporta condicionais dinâmicos na importação.
+- **ESM**
+  - Usa `import` e `export`.
+  - Carregamento assíncrono, adequado tanto para módulos do lado do servidor quanto para o navegador.
+  - Oferece melhorias de desempenho através de otimizações de estática.
+
+### Exemplos de uso mais avançado:
+
+Importação e Exportação Padrão:
+
+```jsx
+// math.mjs
+export default function add(a, b) {
+  return a + b;
+}
+
+// app.mjs
+import add from "./math.mjs";
+console.log(add(2, 3)); // saída: 5
+```
+
+Importação e exportação nomeada:
+
+```jsx
+// math.mjs
+export function add(a, b) {
+  return a + b;
+}
+
+export function subtract(a, b) {
+  return a - b;
+}
+
+// app.mjs
+import { add, subtract } from "./math.mjs";
+console.log(add(2, 3)); // saída: 5
+console.log(subtract(5, 2)); // saída: 3
+```
+
+#### Importação Dinâmica:
+
+O ESM também suporta importação dinâmica usando a função `import()`, permitindo carregar módulos condicionalmente ou de forma assíncrona.
+
+```jsx
+// app.mjs
+async function loadMathModule() {
+  const math = await import("./math.mjs");
+  console.log(math.add(2, 3)); // saída: 5
+}
+
+loadMathModule();
+```
+
+Em resumo, **Node.js** oferece flexibilidade para usar tanto o sistema de módulos **CommonJS** quanto o **ESM**, permitindo a escolha o que melhor se adapta às suas necessidades de desenvolvimento.
+
+</details>
