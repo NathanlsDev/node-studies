@@ -437,3 +437,41 @@ Por padrão, um `EventEmitter` pode ter até 10 ouvintes para um evento específ
 o **Node** emitirá um aviso de possíveis vazamentos de memória. Você pode ajustar esse limite com o método `setMaxListeners`.
 
 </details>
+
+## Core Modules
+
+<details>
+  <summary>HTTP</summary>
+
+O módulo `http` é um dos módulos principais (core modules) do **Node.js**. Ele permite a criação de servidores web e clientes HTTP,
+
+facilitando a construção de aplicações web de maneira eficiente. Este módulo fornece classes e métodos para realizar operações HTTP, como enviar e receber dados através do protocolo HTTP.
+
+### Criando um Servidor HTTP
+
+Para criar um servidor HTTP básico em **Node.js**, você utiliza o módulo `http`. Aqui está um exemplo simples de um servidor que responde com "_Hello, World!_" a qualquer requisição:
+
+```jsx
+const http = require("http");
+
+// Cria um servidor
+const server = http.createServer((req, res) => {
+  res.statusCode = 200;
+  res.setHeader("Content-Type", "text/plain");
+  res.end("Hello, World!\n");
+});
+
+// O servidor escuta na porta 3000
+server.listen(3000, "127.0.0.1", () => {
+  console.log("Servidor rodando em http://127.0.0.1:3000/");
+});
+```
+
+### Explicação:
+
+- **`http.createServer(callback)`**: Cria um servidor HTTP. O callback recebe dois parâmetros: `req` (objeto de requisição) e `res` (objeto de resposta).
+- **`res.statusCode`**: Define o código de status HTTP da resposta.
+- **`res.setHeader('Content-Type', 'text/plain')`**: Define o cabeçalho `Content-Type` da resposta.
+- **`res.end('Hello, World!\n')`**: Envia a resposta e finaliza a conexão.
+- **`server.listen(port, hostname, callback)`**: Faz o servidor escutar em uma porta específica (3000 neste caso) e um hostname específico (`127.0.0.1`).
+</details>
