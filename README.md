@@ -83,7 +83,7 @@ Módulos são scripts reutilizáveis, eles são divididos em três categorias:
 - **Modulo local**: São módulos definidos pelo usuário dentro de um projeto Node.js.
   Eles são usados para encapsular funcionalidades específicas que você deseja reutilizar em diferentes partes da sua aplicação.
 - **Core Modules**: São módulos embutidos que vêm com a instalação do Node.js, como `fs`, `http`, `path`, `os`, entre outros.
-- **Modulos Externos**: São módulos criados pela comunidade e publicados no **npm** (_Node Package Manager_). Eles podem ser instalados e usados em seus projetos.
+- **Módulos Externos**: São módulos criados pela comunidade e publicados no **npm** (_Node Package Manager_). Eles podem ser instalados e usados em seus projetos.
 </details>
 
 ## Utilizando um módulo
@@ -148,7 +148,7 @@ console.log(math.add(2, 3)); // saída: 5
 
 O ECMAScript Modules, é o sistema de módulos moderno introduzido no _ES6 (ECMAScript 2015)_.
 
-Ele usa as palavras-chave `import` e `export` para gerenciar módulos. **Node.js** Começou a suportar **ESM** nativamente a partir da vcersão `12.x`, embora com algumas restrições e necessidade de configuração.
+Ele usa as palavras-chave `import` e `export` para gerenciar módulos. **Node.js** Começou a suportar **ESM** nativamente a partir da versão `12.x`, embora com algumas restrições e necessidade de configuração.
 
 **Exportando com ESM**:
 
@@ -396,8 +396,44 @@ enquanto `setTimeout` é agendado para a próxima fase de timers.
 - `setTimeout(callback, 0)`: Coloca o callback na fila de timers e será executado na próxima iteração ou após o intervalo especificado.
 - `setImmediate(callback)`: Coloca o callback na fila de check e será executado na mesma iteração do Event Loop, após a fase de poll.
 
-### Event Loop e Assíncronia
+### Event Loop e Assincronia
 
 **Node.js** utiliza o Event Loop para permitir a execução assíncrona de operações I/O. Em vez de bloquear a execução até que uma operação de I/O seja concluída, **Node.js** registra um callback e passa para a próxima operação. Quando a operação de I/O é concluída, o callback é colocado na fila de eventos para ser executado.
+
+</details>
+
+## Event Emitter
+
+<details>
+  <summary>Event Emitter</summary>
+
+O `EventEmitter` é uma **classe** central no **Node** que facilita o tratamento de eventos. É uma implementação do padrão de projeto "Observer" (observador), onde um objeto (o emissor de eventos) mantém uma lista de dependentes (ouvintes) e notifica-os automaticamente sobre qualquer mudança de estado.
+
+### Uso Básico do `EventEmitter`
+
+Para usar o `EventEmitter`, você precisa importar o módulo `events` e criar uma instância do `EventEmitter`.
+
+**Exemplo Básico:**
+
+```jsx
+const EventEmitter = require("events");
+
+// Cria uma instância do EventEmitter
+const myEmitter = new EventEmitter();
+
+// Define um ouvinte para um evento chamado 'start'
+myEmitter.on("start", () => {
+  console.log("An event occurred!");
+});
+
+// Emite o evento 'start'
+myEmitter.emit("start"); // Output: An event occurred!
+```
+
+### Limites de Ouvintes
+
+Por padrão, um `EventEmitter` pode ter até 10 ouvintes para um evento específico. Se você adicionar mais do que isso,
+
+o **Node** emitirá um aviso de possíveis vazamentos de memória. Você pode ajustar esse limite com o método `setMaxListeners`.
 
 </details>
