@@ -11,8 +11,8 @@ inquirer
       message: "What is the second note?",
     },
   ])
-  .then(({ Q1, Q2}) => {
-    console.log({ Q1, Q2});
+  .then(({ Q1, Q2 }) => {
+    console.log({ Q1, Q2 });
     const average = (Number(Q1) + Number(Q2)) / 2;
     console.log(average);
   })

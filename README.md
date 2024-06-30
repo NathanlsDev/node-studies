@@ -279,7 +279,7 @@ Para aplicações mais complexas, módulos externos oferecem funcionalidades adi
 <details>
   <summary>npm install</summary>
 
-  Módulos externos são pacotes de software que não estão incluídos no **core** do **Node.js**, mas que podem ser instalados e usados para adicionar funcionalidades ao seu projeto.
+Módulos externos são pacotes de software que não estão incluídos no **core** do **Node.js**, mas que podem ser instalados e usados para adicionar funcionalidades ao seu projeto.
 
 O **Node.js** utiliza o **npm** para gerenciar esses pacotes.
 
@@ -302,5 +302,102 @@ Quando você instala um módulo com `npm install`, você pode usar a flag `--sav
 1. **Gestão de Dependências**: Todas as dependências do projeto são listadas, facilitando a instalação e manutenção.
 2. **Automação de Scripts**: Você pode definir scripts para automação de tarefas, como testes, construção e desenvolvimento.
 3. **Informações do Projeto**: O arquivo contém metadados sobre o projeto, facilitando a colaboração e a publicação.
+
+</details>
+
+## Event Loop
+
+<details>
+  <summary>Event Loop</summary>
+  
+  O **Event Loop** é um dos componentes de arquitetura mais importantes do **Node**. Ele permite que o **Node** execute operações de **I/O** (entrada/saída) de maneira não bloqueante, mesmo que o **JavaScript** seja _single-threaded_. O **Event Loop** faz isso delegando operações para o sistema operacional sempre que possível e registrando callbacks para serem chamados quando a operação for concluída.
+
+### Como o Event Loop Funciona
+
+O **Event Loop** é responsável por gerenciar a execução de tarefas, eventos e callbacks.
+
+Ele verifica continuamente a fila de eventos para ver se há funções que precisam ser executadas.
+
+### Fases do Event Loop
+
+O **Event Loop** em **Node.js** é dividido em várias fases, cada uma com uma fila de callbacks que são processados em ordem. As principais fases são:
+
+1. **Timers**: Esta fase lida com callbacks agendados por `setTimeout()` e `setInterval()`.
+2. **I/O Callbacks**: Processa callbacks de I/O diferidos, como aqueles provenientes de algumas operações de sistema de arquivos.
+3. **Idle, Prepare**: Apenas para uso interno do Node.js.
+4. **Poll**: Recupera novos eventos de I/O; executa quase todas as operações de I/O de forma bloqueante.
+5. **Check**: Executa callbacks `setImmediate()`.
+6. **Close Callbacks**: Processa eventos de fechamento, como `socket.on('close', ...)`.
+
+### Exemplo Simplificado
+
+Vamos considerar um exemplo para entender melhor o Event Loop.
+
+```jsx
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Timeout 1");
+}, 0);
+
+setImmediate(() => {
+  console.log("Immediate 1");
+});
+
+console.log("End");
+```
+
+Saída Esperada:
+
+```jsx
+Start
+End
+Immediate 1
+Timeout 1
+```
+
+### Explicação:
+
+1. **Start** é impresso imediatamente.
+2. **setTimeout** e **setImmediate** são colocados nas suas respectivas filas.
+3. **End** é impresso imediatamente.
+4. **setImmediate** é processado antes de **setTimeout** porque, mesmo que ambos sejam assíncronos, `setImmediate` é executado no final da fase de check do Event Loop,
+
+enquanto `setTimeout` é agendado para a próxima fase de timers.
+
+### Modo de Funcionamento do Event Loop
+
+#### 1. **Timers**:
+
+- O Event Loop verifica se há algum callback de `setTimeout` ou `setInterval` que está pronto para ser executado. Se houver, ele executa esses callbacks.
+
+#### 2. **I/O Callbacks**:
+
+- Após processar os timers, ele verifica a fila de callbacks de I/O. Estes são callbacks que foram adiados para a próxima iteração do loop.
+
+#### 3. **Idle, Prepare**:
+
+- Esta fase é usada internamente pelo Node.js.
+
+#### 4. **Poll**:
+
+- Esta é a fase onde a maior parte do trabalho de I/O é realizado. Se o Event Loop entrar nesta fase e não houver timers agendados, ele poderá bloquear aqui esperando por eventos de I/O.
+
+#### 5. **Check**:
+
+- Esta fase é onde os callbacks agendados por `setImmediate` são executados.
+
+#### 6. **Close Callbacks**:
+
+- Se um socket ou handle foi fechado, como `socket.on('close')`, os callbacks de fechamento são chamados nesta fase.
+
+### Diferença entre `setTimeout` e `setImmediate`
+
+- `setTimeout(callback, 0)`: Coloca o callback na fila de timers e será executado na próxima iteração ou após o intervalo especificado.
+- `setImmediate(callback)`: Coloca o callback na fila de check e será executado na mesma iteração do Event Loop, após a fase de poll.
+
+### Event Loop e Assíncronia
+
+**Node.js** utiliza o Event Loop para permitir a execução assíncrona de operações I/O. Em vez de bloquear a execução até que uma operação de I/O seja concluída, **Node.js** registra um callback e passa para a próxima operação. Quando a operação de I/O é concluída, o callback é colocado na fila de eventos para ser executado.
 
 </details>
