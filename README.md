@@ -475,3 +475,103 @@ server.listen(3000, "127.0.0.1", () => {
 - **`res.end('Hello, World!\n')`**: Envia a resposta e finaliza a conexão.
 - **`server.listen(port, hostname, callback)`**: Faz o servidor escutar em uma porta específica (3000 neste caso) e um hostname específico (`127.0.0.1`).
 </details>
+
+<details>
+  <summary>URL</summary>
+
+O módulo `url` do **Node** é um módulo fundamental que fornece utilitários para a análise (*parsing*), resolução e manipulação de URLs.
+Ele é útil para extrair componentes de URLs, como o protocolo, hostname, caminho e query strings.
+
+### Parsing de URLs
+
+A função `url.parse()` é utilizada para analisar uma URL e retornar um objeto contendo suas diferentes partes.
+
+**Exemplo**:
+
+```jsx
+const url = require("url");
+
+const myURL = url.parse("https://example.com:8080/path/name?query=string#hash");
+
+console.log(myURL);
+```
+
+**Saida**:
+
+```jsx
+Url {
+  protocol: 'https:',
+  slashes: true,
+  auth: null,
+  host: 'example.com:8080',
+  port: '8080',
+  hostname: 'example.com',
+  hash: '#hash',
+  search: '?query=string',
+  query: 'query=string',
+  pathname: '/path/name',
+  path: '/path/name?query=string',
+  href: 'https://example.com:8080/path/name?query=string#hash'
+}
+```
+
+### Componentes de uma URL
+
+- **protocol**: O protocolo da URL (por exemplo, `http:` ou `https:`).
+- **slashes**: Indica se a URL contém `//` após o protocolo.
+- **auth**: Informação de autenticação (por exemplo, `user:pass`).
+- **host**: O hostname, incluindo a porta (por exemplo, `example.com:8080`).
+- **port**: A porta (por exemplo, `8080`).
+- **hostname**: O hostname sem a porta (por exemplo, `example.com`).
+- **hash**: O fragmento da URL (por exemplo, `#hash`).
+- **search**: A query string, incluindo o `?` (por exemplo, `?query=string`).
+- **query**: A query string sem o `?` (por exemplo, `query=string`).
+- **pathname**: O caminho (por exemplo, `/path/name`).
+- **path**: O caminho e a query string (por exemplo, `/path/name?query=string`).
+- **href**: A URL completa.
+
+### Manipulando URLs com `URL` e `URLSearchParams`
+
+Com **Node** `10.x` ou superior, a classe `URL` e o objeto `URLSearchParams` são recomendados para manipulação de URLs e query strings.
+**Exemplo de** `URL`:
+
+```jsx
+const { URL } = require("url");
+
+const myURL = new URL("https://example.com:8080/path/name?query=string#hash");
+
+console.log(myURL.href); // https://example.com:8080/path/name?query=string#hash
+console.log(myURL.origin); // https://example.com:8080
+console.log(myURL.protocol); // https:
+console.log(myURL.hostname); // example.com
+console.log(myURL.port); // 8080
+console.log(myURL.pathname); // /path/name
+console.log(myURL.search); // ?query=string
+console.log(myURL.hash); // #hash
+```
+
+**Exemplo de** `URLSearchParams`:
+
+```jsx
+const { URLSearchParams } = require("url");
+
+const params = new URLSearchParams("query=string&key=value");
+
+console.log(params.get("query")); // string
+console.log(params.get("key")); // value
+
+// Adicionando novos parâmetros
+params.append("newKey", "newValue");
+console.log(params.toString()); // query=string&key=value&newKey=newValue
+
+// Iterando sobre os parâmetros
+for (const [key, value] of params) {
+  console.log(`${key}: ${value}`);
+}
+```
+
+### Comparando `url.parse()` e `new URL()`
+
+- **`url.parse()`**: Retorna um objeto com propriedades específicas que representam diferentes partes da URL.
+- **`new URL()`**: Cria uma instância da classe `URL`, que oferece métodos e propriedades mais poderosos e padronizados para manipulação de URLs.
+  </details>
