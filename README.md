@@ -479,7 +479,7 @@ server.listen(3000, "127.0.0.1", () => {
 <details>
   <summary>URL</summary>
 
-O módulo `url` do **Node** é um módulo fundamental que fornece utilitários para a análise (*parsing*), resolução e manipulação de URLs.
+O módulo `url` do **Node** é um módulo fundamental que fornece utilitários para a análise (_parsing_), resolução e manipulação de URLs.
 Ele é útil para extrair componentes de URLs, como o protocolo, hostname, caminho e query strings.
 
 ### Parsing de URLs
@@ -574,4 +574,19 @@ for (const [key, value] of params) {
 
 - **`url.parse()`**: Retorna um objeto com propriedades específicas que representam diferentes partes da URL.
 - **`new URL()`**: Cria uma instância da classe `URL`, que oferece métodos e propriedades mais poderosos e padronizados para manipulação de URLs.
-  </details>
+</details>
+
+<details>
+  <summary>File System - fs</summary>
+
+O módulo `fs` (File System) do **Node** é um dos módulos principais que permite interagir com o sistema de arquivos. Ele oferece uma API para realizar operações como leitura, escrita, atualização, remoção e verificação de arquivos e diretórios. O `fs` suporta tanto métodos síncronos quanto assíncronos, permitindo escolher entre operações bloqueantes e não bloqueantes.
+
+### Funcionalidade essenciais
+
+- **Leitura e Gravação de Arquivos:** Acesse e manipule o conteúdo de arquivos de texto e binários de forma assíncrona ou síncrona.
+- **Criação e Exclusão de Arquivos:** Crie novos arquivos ou exclua arquivos existentes com base em suas necessidades.
+- **Gerenciamento de Diretórios:** Crie, renomeie e exclua diretórios, além de verificar sua existência e listar seu conteúdo.
+- **Manipulação de Caminhos:** Trabalhe com caminhos de arquivos de forma eficiente, resolvendo e normalizando caminhos e construindo caminhos relativos.
+- **Fluxos de Dados:** Crie fluxos de leitura e gravação para lidar com grandes volumes de dados de forma eficiente.
+- **Estatísticas de Arquivos:** Obtenha informações detalhadas sobre arquivos e diretórios, como tamanho, data de modificação e permissões.
+</details>
