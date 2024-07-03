@@ -1,0 +1,14 @@
+{
+  "name": "1_creating_project",
+  "version": "1.0.0",
+  "description": "practicing with npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "npm"
+  ],
+  "author": "nathanlsdev",
+  "license": "ISC"
+}
