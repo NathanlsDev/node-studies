@@ -29,8 +29,8 @@ Ela deve ser descartável, ou seja, a cada instalação do projeto baixamos todo
 ## REPL
 
 <details>
-  <summary>Read-Eval-Print Loop</summary>
-  Na maioria das vezes <strong>estaremos executando o Node via arquivos</strong> do nosso projeto, porém também é possível <strong>executá-lo via terminal</strong> bastando digitar:
+<summary>Read-Eval-Print Loop</summary>
+Na maioria das vezes <strong>estaremos executando o Node via arquivos</strong> do nosso projeto, porém também é possível <strong>executá-lo via terminal</strong> bastando digitar:
 
 `node`
 
@@ -72,7 +72,7 @@ O REPL do Node.js é uma ferramenta poderosa para desenvolvedores que desejam ex
 ## O que são módulos
 
 <details>
-  <summary>Tipos de módulos</summary>
+<summary>Tipos de módulos</summary>
 
 Um módulo é **_um pedaço de código encapsulado que possui suas próprias funcionalidades_** e pode ser facilmente reutilizado em outros projetos.
 
@@ -113,7 +113,7 @@ Esses módulos são escritos em **C++** e **JavaScript**, sendo altamente otimiz
 Em Node.js, há duas formas principais de gerenciar módulos e suas dependências: o sistema **CommonJS** e o sistema **ECMAScript Modules** (**ESM**).
 
 <details>
-  <summary>CommonJS</summary>
+<summary>CommonJS</summary>
 
 ### CommonJS
 
@@ -142,7 +142,7 @@ console.log(math.add(2, 3)); // saída: 5
 </details>
 
 <details>
-  <summary>ECMAScript Modules (ESM)</summary>
+<summary>ECMAScript Modules (ESM)</summary>
 
 ### ECMAScript Modules (ESM)
 
@@ -277,7 +277,7 @@ Para aplicações mais complexas, módulos externos oferecem funcionalidades adi
 ## Módulos externos
 
 <details>
-  <summary>npm install</summary>
+<summary>npm install</summary>
 
 Módulos externos são pacotes de software que não estão incluídos no **core** do **Node.js**, mas que podem ser instalados e usados para adicionar funcionalidades ao seu projeto.
 
@@ -308,9 +308,9 @@ Quando você instala um módulo com `npm install`, você pode usar a flag `--sav
 ## Event Loop
 
 <details>
-  <summary>Event Loop</summary>
+<summary>Event Loop</summary>
   
-  O **Event Loop** é um dos componentes de arquitetura mais importantes do **Node**. Ele permite que o **Node** execute operações de **I/O** (entrada/saída) de maneira não bloqueante, mesmo que o **JavaScript** seja _single-threaded_. O **Event Loop** faz isso delegando operações para o sistema operacional sempre que possível e registrando callbacks para serem chamados quando a operação for concluída.
+O **Event Loop** é um dos componentes de arquitetura mais importantes do **Node**. Ele permite que o **Node** execute operações de **I/O** (entrada/saída) de maneira não bloqueante, mesmo que o **JavaScript** seja _single-threaded_. O **Event Loop** faz isso delegando operações para o sistema operacional sempre que possível e registrando callbacks para serem chamados quando a operação for concluída.
 
 ### Como o Event Loop Funciona
 
@@ -405,7 +405,7 @@ enquanto `setTimeout` é agendado para a próxima fase de timers.
 ## Event Emitter
 
 <details>
-  <summary>Event Emitter</summary>
+<summary>Event Emitter</summary>
 
 O `EventEmitter` é uma **classe** central no **Node** que facilita o tratamento de eventos. É uma implementação do padrão de projeto "Observer" (observador), onde um objeto (o emissor de eventos) mantém uma lista de dependentes (ouvintes) e notifica-os automaticamente sobre qualquer mudança de estado.
 
@@ -441,11 +441,9 @@ o **Node** emitirá um aviso de possíveis vazamentos de memória. Você pode aj
 ## Core Modules
 
 <details>
-  <summary>HTTP</summary>
+<summary>HTTP</summary>
 
-O módulo `http` é um dos módulos principais (core modules) do **Node.js**. Ele permite a criação de servidores web e clientes HTTP,
-
-facilitando a construção de aplicações web de maneira eficiente. Este módulo fornece classes e métodos para realizar operações HTTP, como enviar e receber dados através do protocolo HTTP.
+O módulo `http` é um dos módulos principais (core modules) do **Node.js**. Ele permite a criação de servidores web e clientes HTTP, facilitando a construção de aplicações web de maneira eficiente. Este módulo fornece classes e métodos para realizar operações HTTP, como enviar e receber dados através do protocolo HTTP.
 
 ### Criando um Servidor HTTP
 
@@ -477,7 +475,7 @@ server.listen(3000, "127.0.0.1", () => {
 </details>
 
 <details>
-  <summary>URL</summary>
+<summary>URL</summary>
 
 O módulo `url` do **Node** é um módulo fundamental que fornece utilitários para a análise (_parsing_), resolução e manipulação de URLs.
 Ele é útil para extrair componentes de URLs, como o protocolo, hostname, caminho e query strings.
@@ -577,7 +575,7 @@ for (const [key, value] of params) {
 </details>
 
 <details>
-  <summary>File System - fs</summary>
+<summary>File System - fs</summary>
 
 O módulo `fs` (File System) do **Node** é um dos módulos principais que permite interagir com o sistema de arquivos. Ele oferece uma API para realizar operações como leitura, escrita, atualização, remoção e verificação de arquivos e diretórios. O `fs` suporta tanto métodos síncronos quanto assíncronos, permitindo escolher entre operações bloqueantes e não bloqueantes.
 
@@ -589,12 +587,29 @@ O módulo `fs` (File System) do **Node** é um dos módulos principais que permi
 - **Manipulação de Caminhos:** Trabalhe com caminhos de arquivos de forma eficiente, resolvendo e normalizando caminhos e construindo caminhos relativos.
 - **Fluxos de Dados:** Crie fluxos de leitura e gravação para lidar com grandes volumes de dados de forma eficiente.
 - **Estatísticas de Arquivos:** Obtenha informações detalhadas sobre arquivos e diretórios, como tamanho, data de modificação e permissões.
+  </details>
+
+<details>
+<summary>Path</summary>
+
+O módulo `path` é um dos módulos principais do **Node** e fornece utilitários para trabalhar com caminhos de arquivos e diretórios. Ele facilita a manipulação e formatação de caminhos de uma maneira que é independente do sistema operacional, tornando o código mais portável entre diferentes ambientes (_Windows, macOS, Linux_).
+
+### Principais Métodos do Módulo `path`
+
+- `path.basename()`: Retorna a última parte de um caminho. É útil para obter o nome do arquivo de um caminho completo.
+- `path.dirname()`: Retorna o diretório pai de um caminho. É útil para obter o caminho do diretório de um arquivo.
+- `path.extname()`: Retorna a extensão de um arquivo. É útil para determinar o tipo de arquivo.
+- `path.join()`: Une todos os argumentos fornecidos em um único caminho. Ele usa o separador apropriado para o sistema operacional.
+- `path.resolve()`: Resolve uma sequência de caminhos ou segmentos de caminhos em um caminho absoluto. Ele processa as partes da direita para a esquerda, adicionando-as até formar um caminho absoluto.
+- `path.normalize()`: Normaliza um caminho, resolvendo `..` e `.` segmentos.
+- `path.isAbsolute()`: Verifica se um caminho é absoluto.
+- `path.relative()`: Retorna o caminho relativo de um local para outro.
 </details>
 
 ## Rotas
 
 <details>
-  <summary>Rotas em node</summary>
+<summary>Rotas em node</summary>
 
 Em **Node**, "rotas" referem-se aos pontos finais (endpoints) de uma aplicação que correspondem a diferentes URLs e métodos HTTP (como _GET, POST, PUT, DELETE_). Rotas são essenciais para construir APIs RESTful e para lidar com diferentes requisições em aplicações web.
 
