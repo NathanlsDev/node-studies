@@ -606,6 +606,36 @@ O módulo `path` é um dos módulos principais do **Node** e fornece utilitário
 - `path.relative()`: Retorna o caminho relativo de um local para outro.
 </details>
 
+<details>
+<summary>OS Module</summary>
+
+O módulo `os` é um dos módulos nativos do **Node** que fornece uma série de métodos utilitários para interagir com o sistema operacional subjacente. Ele permite acessar informações do sistema, manipular variáveis de ambiente, e realizar várias operações relacionadas ao sistema.
+
+### Importando o Módulo `os`
+
+Para usar o módulo `os`, você precisa importá-lo no seu script:
+
+```jsx
+const os = require("os");
+```
+
+### Principais Métodos do Módulo `os`
+
+- `os.arch()`: Retorna a arquitetura da CPU para a qual a versão do Node.js foi compilada (por exemplo, `'x64'`, `'arm'`, `'ia32'`).
+- `os.platform()`: Retorna uma string identificando a plataforma do sistema operacional (por exemplo, `'darwin'`, `'win32'`, `'linux'`).
+- `os.type()`: Retorna uma string identificando o tipo do sistema operacional (por exemplo, `'Linux'`, `'Darwin'`, `'Windows_NT'`).
+- `os.release()`: Retorna uma string que identifica a versão do sistema operacional.
+- `os.uptime()`: Retorna o tempo de atividade do sistema em segundos.
+- `os.totalmem()`: Retorna a quantidade total de memória do sistema em bytes.
+- `os.freemem()`: Retorna a quantidade de memória livre do sistema em bytes.
+- `os.homedir()`: Retorna o diretório inicial do usuário atual.
+- `os.tmpdir()`: Retorna o diretório para arquivos temporários.
+- `os.hostname()`: Retorna o nome do host do sistema operacional.
+- `os.networkInterfaces()`: Retorna um objeto contendo as interfaces de rede que foram atribuídas um endereço de rede.
+- `os.cpus()`: Retorna uma matriz de objetos contendo informações sobre cada CPU/lógica do processador disponível.
+
+</details>
+
 ## Rotas
 
 <details>
