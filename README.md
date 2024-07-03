@@ -590,3 +590,14 @@ O módulo `fs` (File System) do **Node** é um dos módulos principais que permi
 - **Fluxos de Dados:** Crie fluxos de leitura e gravação para lidar com grandes volumes de dados de forma eficiente.
 - **Estatísticas de Arquivos:** Obtenha informações detalhadas sobre arquivos e diretórios, como tamanho, data de modificação e permissões.
 </details>
+
+## Rotas
+
+<details>
+  <summary>Rotas em node</summary>
+
+Em **Node**, "rotas" referem-se aos pontos finais (endpoints) de uma aplicação que correspondem a diferentes URLs e métodos HTTP (como _GET, POST, PUT, DELETE_). Rotas são essenciais para construir APIs RESTful e para lidar com diferentes requisições em aplicações web.
+
+Para gerenciar rotas em **Node**, o módulo `http` pode ser usado para criar um servidor simples com rotas básicas, mas o uso de frameworks como **_Express_** simplifica e aprimora significativamente o gerenciamento de rotas.
+
+</details>
