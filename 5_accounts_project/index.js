@@ -63,7 +63,9 @@ function invalidUser() {
 
 function buildAcc(accountName) {
   if (fs.existsSync(`accounts/${accountName}.json`)) {
-    console.log(chalk.bgRed.black("This user account already exists!\n"));
+    console.log(
+      chalk.bgYellowBright.black("This user account already exists!\n")
+    );
     createUserAcc();
     return;
   }
@@ -94,14 +96,45 @@ function checkBalance() {
   console.log("checkBalance aqui");
   operation();
 }
-function deposit() {
-  console.log("deposit aqui");
-  operation();
+
+async function deposit() {
+  try {
+    const accounts = await getAccounts();
+    const answers = await inquirer.prompt([
+      {
+        type: "list",
+        name: "accountName",
+        message: "What is the name of your account?",
+        choices: accounts,
+      },
+    ]);
+    console.log(answers);//implementar seleção de contas
+  } catch (err) {
+    console.log(err);
+  }
 }
+
+function getAccounts() {
+  return new Promise((resolve, reject) => {
+    fs.readdir(`./accounts/`, (err, data) => {
+      if (err) {
+        console.error(chalk.bgRed("There are no registered accounts!"));
+        operation();
+      } else {
+        const registredAccounts = data.map((account) => account.split(".")[0]);
+        resolve(registredAccounts);
+      }
+    });
+  });
+}
+
 function withdraw() {
   console.log("withdraw aqui");
   operation();
 }
 function exit() {
-  console.log("Ending system...");
+  console.log(
+    chalk.bgMagentaBright.greenBright("\nThanks for using Accounts!\n")
+  );
+  process.exit();
 }
