@@ -131,8 +131,32 @@ const getAccount = (accountName) => {
   return JSON.parse(accountJSON);
 };
 
-const withdraw = () => {};
-const checkBalance = () => {};
+const checkBalance = () => {
+  inquirer
+    .prompt([
+      {
+        name: "accountName",
+        message: "Which account would you like to consult the balance?",
+      },
+    ])
+    .then(({ accountName }) => {
+      if (!checkAccount(accountName)) {
+        return checkBalance();
+      }
+
+      const accountData = getAccount(accountName);
+      console.log(
+        chalk.bgBlue.white(
+          `Hello ${accountName}, The balance of your account is $${accountData.balance}`
+        )
+      );
+    })
+    .catch((err) => console.log(err));
+};
+
+const withdraw = () => {
+  
+};
 
 const exit = () => {
   console.log(chalk.bgBlue.black("Thanks for using Accounts"));
