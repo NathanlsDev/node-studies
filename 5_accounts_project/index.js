@@ -155,7 +155,58 @@ const checkBalance = () => {
 };
 
 const withdraw = () => {
-  
+  inquirer
+    .prompt([
+      {
+        name: "accountName",
+        message: "What is the name of your account?",
+      },
+    ])
+    .then(({ accountName }) => {
+      if (!checkAccount(accountName)) {
+        return withdraw();
+      }
+
+      inquirer
+        .prompt([
+          {
+            name: "amount",
+            message: "How much do you want to withdraw?",
+          },
+        ])
+        .then(({ amount }) => {
+          removeAmount(accountName, amount);
+        })
+        .catch((err) => console.log(err));
+    })
+    .catch((err) => console.log(err));
+};
+
+const removeAmount = (accountName, amount) => {
+  const accountData = getAccount(accountName);
+
+  if (!amount) {
+    console.log(chalk.red("An error has occurred, please try again."));
+    return withdraw();
+  }
+  if (accountData.balance < amount) {
+    console.log(chalk.bgRed("The balance of your account is insufficient!"));
+    return withdraw();
+  }
+
+  accountData.balance = Number(accountData.balance) - Number(amount);
+
+  fs.writeFileSync(
+    `accounts/${accountName}.json`,
+    JSON.stringify(accountData),
+    (err) => {
+      console.log(err);
+    }
+  );
+  console.log(
+    chalk.green(`The withdrawal of $${amount} was performed successfully!`)
+  );
+  operation();
 };
 
 const exit = () => {
