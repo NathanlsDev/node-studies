@@ -14,8 +14,6 @@ const operation = () => {
     ])
     .then((answer) => {
       const action = answer["action"];
-      console.log(action);
-
       const handleActions = {
         "Create account": createAccount,
         Balance: checkBalance,
@@ -29,8 +27,8 @@ const operation = () => {
 };
 
 const greetings = () => {
-  console.log(chalk.bgGreen.black("Thanks for choosing our bank!"));
-  console.log(chalk.green("Chose an options below:"));
+  console.log(chalk.bgGreen.black("\nThanks for choosing our bank!"));
+  console.log(chalk.green("Chose an options below:\n"));
 };
 
 const createAccount = () => {
@@ -38,33 +36,52 @@ const createAccount = () => {
     .prompt([
       {
         name: "accountName",
-        message: "Digite um nome para a sua conta:",
+        message: "Enter a name for your account:",
       },
     ])
     .then(({ accountName }) => {
-      console.log(accountName);
-
-      if (!fs.existsSync("accounts")) {
-        fs.mkdirSync(`./accounts`);
-      }
-
-      if (fs.existsSync(`./accounts/${accountName}.json`)) {
-        console.log(chalk.bgRed.black("Error his user already exists."));
-        createAccount();
-        return;
-      }
-
-      fs.writeFileSync(
-        `./accounts/${accountName}.json`,
-        '{"balance": 0}',
-        (err) => {
-          console.log(err);
-        }
-      );
-      console.log(chalk.green("Congratulations, your account was created!"));
-      operation();
+      validAccountName(accountName);
     })
     .catch((err) => console.log(err));
+};
+
+const validAccountName = (accountName) => {
+  if (accountName) {
+    const pattern = /^(?!^ )[a-zA-Z0-9]{3,}( [a-zA-Z0-9]+)*$/;
+    const isAValidAcc = pattern.test(accountName);
+    return isAValidAcc ? buildAcc(accountName) : invalidUser();
+  }
+  return invalidUser();
+};
+
+const invalidUser = () => {
+  console.log(chalk.bgRed("\nInvalid name try again!\n"));
+  return createAccount();
+};
+
+const buildAcc = (accountName) => {
+  if (!fs.existsSync("accounts")) {
+    fs.mkdirSync(`./accounts`);
+  }
+
+  if (fs.existsSync(`./accounts/${accountName}.json`)) {
+    console.log(
+      chalk.bgRed.black("\nError this user account already exists!\n")
+    );
+    return createAccount();
+  }
+
+  fs.writeFileSync(
+    `./accounts/${accountName}.json`,
+    '{ "balance": 0 }',
+    (err) => {
+      console.log(err);
+    }
+  );
+  console.log(
+    chalk.green(`\nCongratulations ${accountName}, your account was created!\n`)
+  );
+  return operation();
 };
 
 const deposit = () => {
@@ -88,7 +105,7 @@ const deposit = () => {
           },
         ])
         .then(({ amount }) => {
-          addAmount(accountName, amount);
+          validAmount(accountName, amount, addAmount, deposit);
         })
         .catch((err) => console.log(err));
     })
@@ -97,19 +114,30 @@ const deposit = () => {
 
 const checkAccount = (accountName) => {
   if (!fs.existsSync(`accounts/${accountName}.json`)) {
-    console.log(chalk.bgYellow.black("Account not found! Try again."));
+    console.log(chalk.bgYellow.black("\nAccount not found! Try again.\n"));
     return false;
   }
   return true;
 };
 
+const validAmount = (accountName, amount, nextAction, backToOrigin) => {
+  if (amount) {
+    const pattern = /^\d+(\.\d+)?$/;
+    const isAValidAmount = pattern.test(amount);
+    return isAValidAmount
+      ? nextAction(accountName, amount)
+      : invalidAmount(backToOrigin);
+  }
+  return invalidAmount(backToOrigin);
+};
+
+const invalidAmount = (backToOrigin) => {
+  console.log(chalk.red("\nInvalid value, please try again.\n"));
+  return backToOrigin();
+};
+
 const addAmount = (accountName, amount) => {
   const accountData = getAccount(accountName);
-
-  if (!amount) {
-    console.log(chalk.red("An error has occurred, please try again."));
-    return deposit();
-  }
 
   accountData.balance = Number(amount) + Number(accountData.balance);
 
@@ -118,8 +146,10 @@ const addAmount = (accountName, amount) => {
     JSON.stringify(accountData),
     (err) => console.log(err)
   );
-  console.log(chalk.green(`Deposit amount $${amount} successfully performed!`));
-  operation();
+  console.log(
+    chalk.green(`\nDeposit amount $${amount} successfully performed!\n`)
+  );
+  return operation();
 };
 
 const getAccount = (accountName) => {
@@ -127,7 +157,6 @@ const getAccount = (accountName) => {
     encoding: "utf8",
     flag: "r",
   });
-
   return JSON.parse(accountJSON);
 };
 
@@ -147,9 +176,10 @@ const checkBalance = () => {
       const accountData = getAccount(accountName);
       console.log(
         chalk.bgBlue.white(
-          `Hello ${accountName}, The balance of your account is $${accountData.balance}`
+          `\nHello ${accountName}, The balance of your account is $${accountData.balance}\n`
         )
       );
+      return operation();
     })
     .catch((err) => console.log(err));
 };
@@ -175,7 +205,7 @@ const withdraw = () => {
           },
         ])
         .then(({ amount }) => {
-          removeAmount(accountName, amount);
+          validAmount(accountName, amount, removeAmount, withdraw);
         })
         .catch((err) => console.log(err));
     })
@@ -185,12 +215,10 @@ const withdraw = () => {
 const removeAmount = (accountName, amount) => {
   const accountData = getAccount(accountName);
 
-  if (!amount) {
-    console.log(chalk.red("An error has occurred, please try again."));
-    return withdraw();
-  }
   if (accountData.balance < amount) {
-    console.log(chalk.bgRed("The balance of your account is insufficient!"));
+    console.log(
+      chalk.bgRed("\nThe balance of your account is insufficient!\n")
+    );
     return withdraw();
   }
 
@@ -204,13 +232,13 @@ const removeAmount = (accountName, amount) => {
     }
   );
   console.log(
-    chalk.green(`The withdrawal of $${amount} was performed successfully!`)
+    chalk.green(`\nThe withdrawal of $${amount} was performed successfully!\n`)
   );
   operation();
 };
 
 const exit = () => {
-  console.log(chalk.bgBlue.black("Thanks for using Accounts"));
+  console.log(chalk.bgBlue.black("\nThanks for using Accounts\n"));
   process.exit();
 };
 
