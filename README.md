@@ -646,3 +646,20 @@ Em **Node**, "rotas" referem-se aos pontos finais (endpoints) de uma aplicação
 Para gerenciar rotas em **Node**, o módulo `http` pode ser usado para criar um servidor simples com rotas básicas, mas o uso de frameworks como **_Express_** simplifica e aprimora significativamente o gerenciamento de rotas.
 
 </details>
+
+## Express
+
+<details>
+<summary>O que é Express?</summary>
+
+**Express** é um _framework_ web para **Node.js** que facilita o desenvolvimento de aplicações web e APIs.
+
+Ele fornece um conjunto de recursos robustos para construir aplicativos de uma única página, multi-páginas e híbridos. Aqui estão algumas características do **Express**:
+
+- **Middleware**: Express usa um sistema de middleware, o que permite adicionar funcionalidades à sua aplicação de forma modular e flexível. Você pode usar middlewares para manipular solicitações HTTP, adicionar autenticação, lidar com erros, entre outros.
+- **Roteamento**: O Express possui um sistema de roteamento poderoso que permite definir rotas para diferentes URLs e métodos HTTP (GET, POST, PUT, DELETE, etc.). Você pode criar rotas para responder a solicitações específicas, como exibir uma página ou manipular dados de um formulário.
+- **Manuseio de Solicitações e Respostas**: Express facilita o manuseio de solicitações e respostas HTTP. Você pode acessar facilmente parâmetros de URL, corpo de solicitações, cabeçalhos, cookies, entre outros.
+- **Templates**: Express suporta mecanismos de templates como Pug, EJS e Handlebars, permitindo que você gere HTML dinâmico no lado do servidor.
+- **Desenvolvimento de APIs**: Com Express, você pode criar APIs RESTful de maneira simples e eficiente, definindo endpoints que retornam dados em formato JSON ou outros formatos apropriados.
+- **Flexibilidade**: Express é minimalista e não impõe muitas restrições, o que permite que você configure e estruture sua aplicação da maneira que preferir.
+</details>
