@@ -663,3 +663,22 @@ Ele fornece um conjunto de recursos robustos para construir aplicativos de uma �
 - **Desenvolvimento de APIs**: Com Express, você pode criar APIs RESTful de maneira simples e eficiente, definindo endpoints que retornam dados em formato JSON ou outros formatos apropriados.
 - **Flexibilidade**: Express é minimalista e não impõe muitas restrições, o que permite que você configure e estruture sua aplicação da maneira que preferir.
 </details>
+
+<details>
+<summary>Middlewares</summary>
+São funções que têm acesso ao objeto de solicitação (request), ao objeto de resposta (response) e à próxima função middleware no ciclo de solicitação/resposta da aplicação. Essas funções podem executar qualquer código, fazer alterações no objeto de solicitação e resposta, encerrar o ciclo de solicitação/resposta ou chamar a próxima função middleware na pilha.
+
+Algumas das principais características e usos de **middlewares**:
+
+- **Execução de Código:** Middlewares podem executar qualquer código que você desejar. Por exemplo, você pode ter um middleware que registra o tempo de cada solicitação.
+- **Modificação de Objetos Request e Response:** Eles podem modificar o objeto de solicitação (req) e o objeto de resposta (res). Por exemplo, você pode adicionar propriedades a esses objetos que serão usadas posteriormente em outras funções middleware ou nas rotas.
+- **Encerramento do Ciclo de Solicitação/Resposta:** Alguns middlewares podem terminar o ciclo de solicitação/resposta. Por exemplo, middlewares de envio de respostas de erros ou de respostas estáticas.
+- **Chamada da Próxima Função Middleware:** Se o middleware atual não terminar o ciclo de solicitação/resposta, ele deve chamar a próxima função middleware. Isso é feito passando a função next() no final do middleware.
+
+### Tipos de Middlewares
+
+- **Middleware de Aplicação:** Vinculado ao objeto app usando `app.use()`.
+- **Middleware de Roteador:** Vinculado a uma instância de `express.Router()`.
+- **Middleware Incorporado:** Middlewares fornecidos pelo próprio Express, como `express.json()` e `express.static()`.
+- **Middleware de Tratamento de Erros:** Middlewares que têm quatro argumentos (**err**, **req**, **res**, **next**) e são usados para manipular erros.
+</details>
